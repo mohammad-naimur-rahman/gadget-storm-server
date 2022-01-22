@@ -97,7 +97,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Product brand is required']
     },
-    type: String,
+    os: String,
     variants: [variantSchema],
     basePrice: {
       type: Number,
@@ -131,6 +131,10 @@ const productSchema = new mongoose.Schema(
     imageSensor: String,
     stockValue: Number,
     coupon: couponSchema,
+    featured: {
+      type: Boolean,
+      default: false
+    },
     supply: {
       type: Boolean,
       default: true
