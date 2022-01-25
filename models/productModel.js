@@ -5,10 +5,11 @@ const variantSchema = new mongoose.Schema(
   {
     ram: Number,
     rom: Number,
-    price: Number,
+    basePrice: Number,
     size: Number,
     sizeUnit: String,
-    withoutDiscount: Number
+    discount: mongoose.Schema.Types.Mixed,
+    price: Number
   },
   { _id: false }
 )
@@ -178,5 +179,7 @@ productSchema.pre('save', function (next) {
   }, this.variants[0].size)
   next()
 })
+
+productSchema.pre('save', function (next) {})
 
 module.exports = mongoose.model('Product', productSchema)
