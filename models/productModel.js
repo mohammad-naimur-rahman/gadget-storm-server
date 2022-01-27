@@ -85,6 +85,7 @@ const productSchema = new mongoose.Schema(
       required: [true, 'Product category is required'],
       enum: [
         'smartPhone',
+        'tablet',
         'earphone',
         'laptop',
         'gimbal',
