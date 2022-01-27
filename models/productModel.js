@@ -5,9 +5,11 @@ const variantSchema = new mongoose.Schema(
   {
     ram: Number,
     rom: Number,
-    basePrice: Number,
+    storage: Number,
+    storageUnit: String,
     size: Number,
     sizeUnit: String,
+    basePrice: Number,
     discount: mongoose.Schema.Types.Mixed,
     price: Number
   },
@@ -61,7 +63,8 @@ const couponSchema = new mongoose.Schema(
     code: String,
     discount: Number,
     startDate: Date,
-    endDate: Date
+    endDate: Date,
+    totalCoupon: Number
   },
   { _id: false }
 )
@@ -103,6 +106,11 @@ const productSchema = new mongoose.Schema(
     basePrice: {
       type: Number,
       required: [true, 'Product base price is required']
+    },
+    discount: mongoose.Schema.Types.Mixed,
+    price: {
+      type: Number,
+      required: [true, 'Product price is required']
     },
     images: [String],
     descriptionImages: [String],
@@ -153,14 +161,6 @@ productSchema.pre('validate', function (next) {
   next()
 })
 
-productSchema.pre('validate', function (next) {
-  const lowestPrice = this.variants.reduce((lowest, variant) => {
-    return variant.price < lowest ? variant.price : lowest
-  }, this.variants[0].price)
-  this.basePrice = lowestPrice
-  next()
-})
-
 productSchema.virtual('reviews', {
   ref: 'Review',
   foreignField: 'product',
@@ -168,18 +168,24 @@ productSchema.virtual('reviews', {
 })
 
 productSchema.pre('save', function (next) {
-  this.baseRam = this.variants.reduce((lowest, variant) => {
-    return variant.ram < lowest ? variant.ram : lowest
-  }, this.variants[0].ram)
-  this.baseRom = this.variants.reduce((lowest, variant) => {
-    return variant.rom < lowest ? variant.rom : lowest
-  }, this.variants[0].rom)
-  this.baseSize = this.variants.reduce((lowest, variant) => {
-    return variant.size < lowest ? variant.size : lowest
-  }, this.variants[0].size)
+  if (this.variants.length > 0) {
+    this.basePrice = this.variants.reduce((lowest, variant) => {
+      return variant.basePrice < lowest ? variant.basePrice : lowest
+    }, this.variants[0].basePrice)
+    this.price = this.variants.reduce((lowest, variant) => {
+      return variant.price < lowest ? variant.price : lowest
+    }, this.variants[0].price)
+    this.baseRam = this.variants.reduce((lowest, variant) => {
+      return variant.ram < lowest ? variant.ram : lowest
+    }, this.variants[0].ram)
+    this.baseRom = this.variants.reduce((lowest, variant) => {
+      return variant.rom < lowest ? variant.rom : lowest
+    }, this.variants[0].rom)
+    this.baseSize = this.variants.reduce((lowest, variant) => {
+      return variant.size < lowest ? variant.size : lowest
+    }, this.variants[0].size)
+  }
   next()
 })
-
-productSchema.pre('save', function (next) {})
 
 module.exports = mongoose.model('Product', productSchema)
