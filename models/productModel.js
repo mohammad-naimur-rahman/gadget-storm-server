@@ -136,7 +136,7 @@ const productSchema = new mongoose.Schema(
     capacity: Number,
     length: Number,
     sound: String,
-    color: [String],
+    colors: [String],
     camera: Number,
     imageSensor: String,
     stockValue: Number,
