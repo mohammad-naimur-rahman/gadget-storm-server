@@ -119,6 +119,9 @@ const productSchema = new mongoose.Schema(
     baseRam: Number,
     baseRom: Number,
     baseSize: Number,
+    baseSizeUnit: String,
+    baseStorage: Number,
+    baseStorageUnit: String,
     processor: String,
     frontCamera: cameraSchema,
     backCamera: cameraSchema,
@@ -185,6 +188,11 @@ productSchema.pre('save', function (next) {
     this.baseSize = this.variants.reduce((lowest, variant) => {
       return variant.size < lowest ? variant.size : lowest
     }, this.variants[0].size)
+    this.baseSizeUnit = this.variants[0].sizeUnit
+    this.baseStorage = this.variants.reduce((lowest, variant) => {
+      return variant.storage < lowest ? variant.storage : lowest
+    }, this.variants[0].storage)
+    this.baseStorageUnit = this.variants[0].storageUnit
   }
   next()
 })
