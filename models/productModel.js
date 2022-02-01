@@ -53,7 +53,7 @@ const cameraSchema = new mongoose.Schema(
 const couponSchema = new mongoose.Schema(
   {
     code: String,
-    discount: Number,
+    discount: String,
     startDate: Date,
     endDate: Date,
     totalCoupon: Number
@@ -130,7 +130,6 @@ const productSchema = new mongoose.Schema(
     ports: [String],
     capacity: Number,
     length: Number,
-    sound: String,
     colors: [String],
     camera: Number,
     imageSensor: String,
