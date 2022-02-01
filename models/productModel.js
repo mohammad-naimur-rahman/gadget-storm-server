@@ -35,20 +35,12 @@ const displaySchema = new mongoose.Schema(
   { _id: false }
 )
 
-const weightSchema = new mongoose.Schema(
-  {
-    weight: Number,
-    weightUnit: String
-  },
-  { _id: false }
-)
-
 const cameraSchema = new mongoose.Schema(
   {
     sensor: [
       {
         megaPixels: Number,
-        cameraType: String,
+        sensorType: String,
         zoom: Number,
         fieldOfView: Number
       }
@@ -129,7 +121,7 @@ const productSchema = new mongoose.Schema(
     batteryType: String,
     dimensions: dimensionSchema,
     display: displaySchema,
-    weight: weightSchema,
+    weight: String,
     driver: Number,
     features: [String],
     axis: Number,
