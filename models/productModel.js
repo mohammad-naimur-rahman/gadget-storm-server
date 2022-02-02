@@ -85,6 +85,7 @@ const productSchema = new mongoose.Schema(
         'dslr',
         'actionCam',
         'powerBank',
+        'smartWatch',
         'blutoothSpeaker',
         'chargerAndCable',
         'other'
@@ -124,6 +125,7 @@ const productSchema = new mongoose.Schema(
     weight: String,
     driver: Number,
     features: [String],
+    charginSpeed: Number,
     axis: Number,
     boxContent: [String],
     flyingTime: Number,
