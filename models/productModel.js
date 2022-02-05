@@ -164,7 +164,7 @@ productSchema.virtual('reviews', {
   localField: '_id'
 })
 
-productSchema.pre('save', function (next) {
+productSchema.pre('validate', function (next) {
   if (this.variants.length > 0) {
     this.basePrice = this.variants.reduce((lowest, variant) => {
       return variant.basePrice < lowest ? variant.basePrice : lowest

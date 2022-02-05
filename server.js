@@ -10,7 +10,7 @@ process.on('uncaughtException', err => {
 dotenv.config({ path: './.env' })
 const app = require('./app')
 
-const DB = process.env.DATABASE_LOCAL_URI // if you want to use local database, then use process.env.DATABASE_LOCAL_URI instead
+const DB = process.env.DATABASE_URI // if you want to use local database, then use process.env.DATABASE_LOCAL_URI instead
 // Sometimes DATABASE_URI may occur error when you are in development mode, in this case, you can use process.env.DATABASE_URI_OLD instead for a moment
 
 mongoose

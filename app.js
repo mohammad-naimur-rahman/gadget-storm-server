@@ -29,8 +29,9 @@ app.use(express.json({ limit: '10kb' }))
 app.use(cookieParser())
 
 // For optimization and security
-if (!process.env.ALLOWED_ORIGIN) app.use(cors())
-else app.use(cors({ origin: process.env.ALLOWED_ORIGIN }))
+// if (!process.env.ALLOWED_ORIGIN) app.use(cors())
+// else app.use(cors({ origin: process.env.ALLOWED_ORIGIN }))
+app.use(cors())
 app.options('*', cors())
 app.use(helmet())
 app.use(mongoSanitize())
