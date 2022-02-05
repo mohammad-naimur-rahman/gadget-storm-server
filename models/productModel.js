@@ -127,7 +127,7 @@ const productSchema = new mongoose.Schema(
     features: [String],
     charginSpeed: Number,
     axis: Number,
-    boxContent: [String],
+    boxContents: [String],
     flyingTime: Number,
     ports: [String],
     capacity: Number,
