@@ -30,7 +30,8 @@ const displaySchema = new mongoose.Schema(
     displayType: String,
     displaySize: Number,
     displayResolution: String,
-    displayScreenToBodyRatio: Number
+    displayScreenToBodyRatio: Number,
+    refreshRate: Number
   },
   { _id: false }
 )
@@ -42,7 +43,9 @@ const cameraSchema = new mongoose.Schema(
         megaPixels: Number,
         sensorType: String,
         zoom: Number,
-        fieldOfView: Number
+        fieldOfView: Number,
+        aperture: Number,
+        ois: String
       }
     ],
     videoCapability: [String]
@@ -60,6 +63,22 @@ const couponSchema = new mongoose.Schema(
   },
   { _id: false }
 )
+
+const colorSchema = new mongoose.Schema(
+  {
+    colorName: String,
+    colorCode: String
+  },
+  { _id: false }
+)
+
+const processorSchema = new mongoose.Schema({
+  brand: String,
+  model: String,
+  core: Number,
+  details: String,
+  gpu: String
+})
 
 const productSchema = new mongoose.Schema(
   {
@@ -115,7 +134,7 @@ const productSchema = new mongoose.Schema(
     baseSizeUnit: String,
     baseStorage: Number,
     baseStorageUnit: String,
-    processor: String,
+    processor: processorSchema,
     frontCamera: cameraSchema,
     backCamera: cameraSchema,
     battery: Number,
@@ -125,14 +144,14 @@ const productSchema = new mongoose.Schema(
     weight: String,
     driver: Number,
     features: [String],
-    charginSpeed: Number,
+    chargingSpeed: Number,
     axis: Number,
     boxContents: [String],
     flyingTime: Number,
     ports: [String],
     capacity: Number,
     length: Number,
-    colors: [String],
+    colors: [colorSchema],
     camera: Number,
     imageSensor: String,
     stockValue: Number,
