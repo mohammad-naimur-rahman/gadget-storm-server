@@ -3,14 +3,14 @@ const {
   addProduct,
   getProductById,
   updateProduct,
-  deleteProduct
-  //getAllProducts
+  deleteProduct,
+  getAllProducts
 } = require('../controllers/productController')
 const Product = require('../models/productModel')
 
 const router = express.Router()
 
-const getAllProducts = async (req, res) => {
+const getAllProducts2 = async (req, res) => {
   // API example - /api/v1/products?product=variants.ram,variants.rom,ports,type,display.displaySize,supply,backCamera.sensor.megaPixels&values=min1,max1024,lightning%20port,android,7.5,false,min10
   let products
   // if (req.query.product === undefined || req.query.values === undefined) {
