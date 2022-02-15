@@ -120,7 +120,7 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Product base price is required']
     },
-    discount: mongoose.Schema.Types.Mixed,
+    discount: String,
     price: {
       type: Number,
       required: [true, 'Product price is required']
@@ -188,6 +188,7 @@ productSchema.pre('validate', function (next) {
     this.basePrice = this.variants.reduce((lowest, variant) => {
       return variant.basePrice < lowest ? variant.basePrice : lowest
     }, this.variants[0].basePrice)
+    this.discount = this.variants[0].discount
     this.price = this.variants.reduce((lowest, variant) => {
       return variant.price < lowest ? variant.price : lowest
     }, this.variants[0].price)
