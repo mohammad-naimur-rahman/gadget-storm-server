@@ -45,7 +45,7 @@ const cameraSchema = new mongoose.Schema(
         ois: String
       }
     ],
-    videoCapability: [String]
+    videoCapability: String
   },
   { _id: false }
 )
