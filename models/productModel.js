@@ -1,20 +1,17 @@
 const mongoose = require('mongoose')
 const slugify = require('slugify')
 
-const variantSchema = new mongoose.Schema(
-  {
-    ram: Number,
-    rom: Number,
-    storage: Number,
-    storageUnit: String,
-    size: Number,
-    sizeUnit: String,
-    basePrice: Number,
-    discount: mongoose.Schema.Types.Mixed,
-    price: Number
-  },
-  { _id: false }
-)
+const variantSchema = new mongoose.Schema({
+  ram: Number,
+  rom: Number,
+  storage: Number,
+  storageUnit: String,
+  size: Number,
+  sizeUnit: String,
+  basePrice: Number,
+  discount: mongoose.Schema.Types.Mixed,
+  price: Number
+})
 
 const dimensionSchema = new mongoose.Schema(
   {
@@ -64,13 +61,10 @@ const couponSchema = new mongoose.Schema(
   { _id: false }
 )
 
-const colorSchema = new mongoose.Schema(
-  {
-    colorName: String,
-    colorCode: String
-  },
-  { _id: false }
-)
+const colorSchema = new mongoose.Schema({
+  colorName: String,
+  colorCode: String
+})
 
 const processorSchema = new mongoose.Schema({
   brand: String,
