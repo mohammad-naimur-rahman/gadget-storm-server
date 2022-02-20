@@ -99,7 +99,7 @@ const productSchema = new mongoose.Schema(
         'actionCam',
         'powerBank',
         'smartWatch',
-        'blutoothSpeaker',
+        'bluetoothSpeaker',
         'chargerAndCable',
         'other'
       ]
