@@ -119,8 +119,22 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Product price is required']
     },
-    images: [String],
-    descriptionImages: [String],
+    images: {
+      type: [String],
+      default: [
+        'https://via.placeholder.com/300x300/eb4034/ffffff?text=Sample+Product+Image+1',
+        'https://via.placeholder.com/300x300/34baeb/ffffff?text=Sample+Product+Image+2',
+        'https://via.placeholder.com/300x300/34eb7a/ffffff?text=Sample+Product+Image+3'
+      ]
+    },
+    descriptionImages: {
+      type: [String],
+      default: [
+        'https://via.placeholder.com/1600x400/34eb7a/ffffff?text=Sample+product+description+image+1',
+        'https://via.placeholder.com/1600x400/34baeb/ffffff?text=Sample+product+description+image+2',
+        'https://via.placeholder.com/1600x400/eb4034/ffffff?text=Sample+product+description+image+3'
+      ]
+    },
     description: Object,
     baseRam: Number,
     baseRom: Number,
